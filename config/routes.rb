@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resource :signup, only: %i[new create]
+  resource :nested_signup, only: %i[new create]
 
   scope "wizard", constraints: { step: Regexp.union(SignupWizard.steps) } do
     get ":step", to: "signup_wizards#show", as: :signup_wizard

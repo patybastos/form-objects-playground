@@ -1,0 +1,44 @@
+<h1>Create your account</h1>
+<p class="progress">accepts_nested_attributes_for version</p>
+
+<%= form_with model: @account, url: nested_signup_path do |f| %>
+  <% if @account.errors.any? %>
+    <div class="errors" role="alert">
+      <ul>
+        <% @account.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>Account</legend>
+    <%= f.label :name, "Company / team name" %>
+    <%= f.text_field :name %>
+  </fieldset>
+
+  <%= f.fields_for :users do |u| %>
+    <fieldset>
+      <legend>You</legend>
+      <%= u.label :name %>
+      <%= u.text_field :name, autocomplete: "name" %>
+
+      <%= u.label :email %>
+      <%= u.email_field :email, autocomplete: "email" %>
+
+      <%= u.label :password %>
+      <%= u.password_field :password, autocomplete: "new-password" %>
+
+      <%= u.label :password_confirmation %>
+      <%= u.password_field :password_confirmation, autocomplete: "new-password" %>
+    </fieldset>
+
+    <label class="checkbox">
+      <%= u.check_box :terms_of_service %>
+      I accept the terms of service
+    </label>
+  <% end %>
+
+  <%= f.submit "Sign up" %>
+<% end %>

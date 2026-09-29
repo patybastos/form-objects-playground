@@ -6,5 +6,6 @@
   <ul>
     <li><%= link_to "Sign up (single page)", new_signup_path %></li>
     <li><%= link_to "Sign up (multi-step wizard)", signup_wizard_path(SignupWizard.steps.first) %></li>
+    <li><%= link_to "Sign up (accepts_nested_attributes_for counterpoint)", new_nested_signup_path %></li>
   </ul>
 <% end %>
