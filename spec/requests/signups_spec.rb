@@ -33,6 +33,14 @@ RSpec.describe "Signups", type: :request do
       expect(response.body).to include("Signed in as <strong>Ada Lovelace</strong>")
     end
 
+    it "rejects a request that omits terms_of_service and password_confirmation" do
+      params[:signup].except!(:terms_of_service, :password_confirmation)
+
+      expect { post signup_path, params: params }.not_to change(User, :count)
+
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+
     it "re-renders the form with 422 when invalid" do
       params[:signup][:terms_of_service] = "0"
 

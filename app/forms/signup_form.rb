@@ -22,7 +22,11 @@ class SignupForm
   validates :account_name, :name, :email, :password, presence: true
   validates :email, format: { with: EMAIL_FORMAT }, allow_blank: true
   validates :password, length: { minimum: PASSWORD_MIN_LENGTH }, confirmation: true, allow_blank: true
-  validates :terms_of_service, acceptance: { accept: true }
+  # Both validators skip nil by default, so a client that simply omits the
+  # field (curl, API) would bypass them. Browsers never hit this: check_box
+  # always sends a hidden "0".
+  validates :password_confirmation, presence: true, if: -> { password.present? }
+  validates :terms_of_service, acceptance: { accept: true, allow_nil: false }
 
   attr_reader :user
 

@@ -31,6 +31,20 @@ RSpec.describe SignupForm, type: :model do
       expect(form.errors[:terms_of_service]).to include("must be accepted")
     end
 
+    it "requires terms_of_service even when the field is omitted entirely" do
+      form.terms_of_service = nil
+
+      expect(form).not_to be_valid
+      expect(form.errors[:terms_of_service]).to include("must be accepted")
+    end
+
+    it "requires password_confirmation even when the field is omitted entirely" do
+      form.password_confirmation = nil
+
+      expect(form).not_to be_valid
+      expect(form.errors[:password_confirmation]).to include("can't be blank")
+    end
+
     it "rejects malformed emails" do
       form.email = "not-an-email"
 
