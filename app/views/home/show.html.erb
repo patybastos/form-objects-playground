@@ -1,0 +1,7 @@
+<h1>Form Objects Playground</h1>
+
+<% if @current_user %>
+  <p>Signed in as <strong><%= @current_user.name %></strong> (<%= @current_user.email %>) on <strong><%= @current_user.account.name %></strong>.</p>
+<% else %>
+  <p><%= link_to "Sign up", new_signup_path %></p>
+<% end %>

@@ -1,0 +1,41 @@
+<h1>Create your account</h1>
+
+<%= form_with model: @signup, url: signup_path do |f| %>
+  <% if @signup.errors.any? %>
+    <div class="errors" role="alert">
+      <ul>
+        <% @signup.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <legend>Account</legend>
+    <%= f.label :account_name, "Company / team name" %>
+    <%= f.text_field :account_name %>
+  </fieldset>
+
+  <fieldset>
+    <legend>You</legend>
+    <%= f.label :name %>
+    <%= f.text_field :name, autocomplete: "name" %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email, autocomplete: "email" %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </fieldset>
+
+  <label class="checkbox">
+    <%= f.check_box :terms_of_service %>
+    I accept the terms of service
+  </label>
+
+  <%= f.submit "Sign up" %>
+<% end %>
