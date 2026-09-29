@@ -3,5 +3,8 @@
 <% if @current_user %>
   <p>Signed in as <strong><%= @current_user.name %></strong> (<%= @current_user.email %>) on <strong><%= @current_user.account.name %></strong>.</p>
 <% else %>
-  <p><%= link_to "Sign up", new_signup_path %></p>
+  <ul>
+    <li><%= link_to "Sign up (single page)", new_signup_path %></li>
+    <li><%= link_to "Sign up (multi-step wizard)", signup_wizard_path(SignupWizard.steps.first) %></li>
+  </ul>
 <% end %>

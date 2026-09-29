@@ -6,3 +6,7 @@ input[type=text], input[type=email], input[type=password] { width: 100%; padding
 .checkbox { display: flex; gap: .5rem; align-items: center; margin: 1rem 0; }
 .errors { background: #fdecea; border: 1px solid #f5c2c0; border-radius: 6px; padding: .5rem 1rem; }
 .notice { background: #e8f5e9; border-radius: 6px; padding: .5rem 1rem; }
+.progress { color: #666; margin-top: -.5rem; }
+.actions { display: flex; gap: 1rem; align-items: center; justify-content: flex-end; }
+.summary { display: grid; grid-template-columns: auto 1fr; gap: .25rem 1rem; }
+.summary dd { margin: 0; }

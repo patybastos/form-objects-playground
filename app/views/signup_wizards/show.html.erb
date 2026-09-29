@@ -1,0 +1,23 @@
+<h1>Create your account</h1>
+<p class="progress">Step <%= @wizard.step_number %> of <%= SignupWizard.steps.size %></p>
+
+<%= form_with model: @wizard, url: signup_wizard_path(@wizard.step), method: :patch do |f| %>
+  <% if @wizard.errors.any? %>
+    <div class="errors" role="alert">
+      <ul>
+        <% @wizard.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= render "signup_wizards/steps/#{@wizard.step}", f: f, wizard: @wizard %>
+
+  <div class="actions">
+    <% if @wizard.previous_step %>
+      <%= link_to "Back", signup_wizard_path(@wizard.previous_step) %>
+    <% end %>
+    <%= f.submit @wizard.last_step? ? "Sign up" : "Continue" %>
+  </div>
+<% end %>
